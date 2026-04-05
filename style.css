@@ -1,0 +1,456 @@
+:root {
+  /* Specification Color Tokens */
+  --bg: #FAFAFA;
+  --text: #191C1D;
+  --muted: #A3A4A1;
+  --muted2: #61615D;
+  --accent: #2C8467;
+  --accent2: #6596A0;
+  --paper: #D6D0AE;
+  --skin: #D0ADA3;
+  --border: rgba(25, 28, 29, 0.12);
+
+  /* Layout Tokens */
+  --hero-height: 90vh;
+  /* Leave a small gap to hint at scroll content */
+  --grid-gap: 32px;
+}
+
+/* Base Reset & Typography */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+  line-height: 1.7;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* =========================================
+   Hero Section
+   ========================================= */
+.hero-container {
+  position: relative;
+  height: var(--hero-height);
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--paper);
+  /* Flash fallback color */
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('./TOP画像.png');
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+  /* Animatable properties */
+  will-change: transform, opacity;
+  transform: translateY(var(--bg-y, 0px)) scale(var(--bg-scale, 1));
+  opacity: var(--bg-opacity, 1);
+}
+
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  text-align: center;
+  will-change: transform, opacity;
+  /* Centering logic using variables combined with standard offset */
+  transform: translate(-50%, calc(-50% + var(--content-y, 0px)));
+  opacity: var(--content-opacity, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-logo {
+  max-width: 240px;
+  width: 100%;
+  height: auto;
+}
+
+.header-logo {
+  position: absolute;
+  top: 32px;
+  left: 40px;
+  z-index: 10;
+  font-size: 72px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #41b583;
+}
+
+/* =========================================
+   Main Content Layout
+   ========================================= */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 40px;
+  /* PC */
+}
+
+.section-intro {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.section-title {
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.section-desc {
+  font-size: 14px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+/* =========================================
+   Works Grid Display
+   ========================================= */
+.worksGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--grid-gap);
+}
+
+.work-card {
+  cursor: pointer;
+  background-color: var(--bg);
+  border-radius: 2px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  outline: 1px solid transparent;
+}
+
+.work-card:hover {
+  transform: translateY(-4px);
+  outline: 1px solid var(--border);
+  box-shadow: 0 16px 32px rgba(25, 28, 29, 0.06);
+}
+
+.work-thumb-wrapper {
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  background-color: var(--paper);
+  /* Placeholder flash color */
+}
+
+/* Thin border separates image and white background slightly */
+.work-card .work-thumb-wrapper {
+  border-bottom: 1px solid var(--border);
+}
+
+.work-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.work-card:hover .work-thumb {
+  transform: scale(1.03);
+}
+
+.work-info {
+  padding: 16px 12px;
+  text-align: left;
+}
+
+.work-category {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.work-title {
+  font-size: 14px;
+  color: var(--text);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}
+
+/* =========================================
+   Footer
+   ========================================= */
+.site-footer {
+  text-align: center;
+  padding: 64px 20px 48px;
+  color: var(--muted);
+  font-size: 13px;
+  border-top: 1px solid var(--border);
+  letter-spacing: 0.02em;
+}
+
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.contact-link {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+
+.contact-link:hover {
+  color: var(--accent);
+}
+
+/* =========================================
+   Works Detail Modal
+   ========================================= */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(25, 28, 29, 0.9);
+  /* Dark overlay */
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.modal-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background-color: var(--bg);
+  width: 90%;
+  max-width: 1000px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  border-radius: 4px;
+  transform: translateY(20px);
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  scrollbar-width: thin;
+  scrollbar-color: var(--muted) var(--bg);
+}
+
+.modal-overlay.is-open .modal-content {
+  transform: translateY(0);
+}
+
+.modal-close-btn {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 101;
+  transition: background-color 0.2s, transform 0.2s;
+  padding: 0;
+  outline: none;
+}
+
+.modal-close-btn:hover {
+  background-color: #F0F0F0;
+  transform: scale(1.05);
+}
+
+.modal-close-btn::before,
+.modal-close-btn::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 1px;
+  background-color: var(--text);
+}
+
+.modal-close-btn::before {
+  transform: rotate(45deg);
+}
+
+.modal-close-btn::after {
+  transform: rotate(-45deg);
+}
+
+.modal-body {
+  padding: 48px 40px;
+}
+
+.modal-image-container {
+  margin-bottom: 40px;
+  background-color: #F0F0F0;
+  /* Off-white for loading frame */
+}
+
+.modal-image {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+}
+
+.modal-details {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.modal-title {
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+.modal-overview {
+  color: var(--muted2);
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+.modal-meta {
+  font-size: 13px;
+  color: var(--muted2);
+  border-top: 1px solid var(--border);
+  padding-top: 24px;
+}
+
+.modal-meta-item {
+  display: flex;
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.modal-meta-label {
+  font-weight: 500;
+  width: 80px;
+  flex-shrink: 0;
+  color: var(--text);
+}
+
+.modal-meta-value {
+  color: var(--muted2);
+}
+
+/* Lock body scroll when modal open */
+body.modal-open {
+  overflow: hidden;
+}
+
+/* =========================================
+   Responsive Adjustments
+   ========================================= */
+@media (max-width: 1024px) {
+  .worksGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .modal-details {
+    gap: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-logo {
+    top: 24px;
+    left: 20px;
+  }
+
+  .container {
+    padding: 64px 20px;
+  }
+
+  .worksGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .modal-details {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .modal-meta {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .modal-body {
+    padding: 32px 20px;
+  }
+
+  .modal-title {
+    font-size: 24px;
+  }
+
+  .modal-close-btn {
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 520px) {
+  body {
+    font-size: 15px;
+    /* SP adjustments */
+  }
+
+  .worksGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .work-thumb-wrapper {
+    aspect-ratio: 16/10;
+    /* Slightly wider on SP */
+  }
+}

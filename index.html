@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAS works</title>
+    <!-- Google Fonts for typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans+JP:wght@100..900&display=swap"
+        rel="stylesheet">
+    <!-- Local stylesheet -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <!-- Hero Section -->
+    <header class="hero-container" id="hero">
+        <div class="header-logo">TAS works</div>
+        <div class="hero-bg" id="heroBg"></div>
+        <div class="hero-content" id="heroContent">
+            <!-- TAS works Logo removed as requested -->
+        </div>
+    </header>
+
+    <!-- Main Works Section -->
+    <main class="container">
+        <!-- Optional minimalist section intro -->
+        <div class="section-intro">
+            <h2 class="section-title">Selected Works</h2>
+            <p class="section-desc">Branding, Web, Graphic & UI Design</p>
+        </div>
+
+        <!-- Works Grid container for JS injection -->
+        <div class="worksGrid" id="worksGrid"></div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-contact">
+            <a href="https://www.instagram.com/tasukunodesk/" target="_blank" rel="noopener noreferrer"
+                class="contact-link">Instagram: @tasukunodesk</a>
+            <a href="mailto:tasuku.goto2000@gmail.com" class="contact-link">Email: tasuku.goto2000@gmail.com</a>
+        </div>
+        <p>&copy; 2024 TAS works. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Work Details Modal -->
+    <div class="modal-overlay" id="workModal">
+        <button class="modal-close-btn" id="modalClose" aria-label="Close modal"></button>
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="modal-image-container">
+                    <img id="modalImage" src="" alt="" class="modal-image">
+                </div>
+                <div class="modal-details">
+                    <div class="modal-main-info">
+                        <div id="modalCategory" class="work-category"></div>
+                        <h2 id="modalTitle" class="modal-title"></h2>
+                        <p id="modalOverview" class="modal-overview"></p>
+                    </div>
+                    <div class="modal-meta-info">
+                        <div class="modal-meta">
+                            <div class="modal-meta-item">
+                                <span class="modal-meta-label">Role</span>
+                                <span class="modal-meta-value" id="modalRole"></span>
+                            </div>
+                            <div class="modal-meta-item">
+                                <span class="modal-meta-label">Tools</span>
+                                <span class="modal-meta-value" id="modalTools"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Local logic script -->
+    <script src="./main.js"></script>
+</body>
+
+</html>
